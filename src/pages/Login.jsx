@@ -1,8 +1,9 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import './Login.css'
-const Login = () => {
-    const navigate = useNavigate()
+import "./Login.css"
+
+function Login() {
+  const navigate = useNavigate()
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -10,45 +11,48 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    // тестовая авторизация если че
+    const success = email === "admin@mail.com" && password === "1234"
 
-    if (!email || !password) {
-      setError("Please fill in all fields")
-      return
-    }
-
-    // Тестовые данные (потом заменишь на backend)
-    if (email === "admin@mail.com" && password === "1234") {
-      localStorage.setItem("auth", "true")
+    if (success) {
       navigate("/dashboard")
     } else {
-      setError("Invalid email or password")
+      setError("Invalid credentials")
     }
   }
-    return (
-<div className="login-container">
-      <form className="login-box" onSubmit={handleSubmit}>
-        <h2>Войдите в систему</h2>
+
+  return (
+    <div className="login-container">
+      <form className="glass-card fade-in" onSubmit={handleSubmit}>
+        <div className="logo"><img src="../src/pages/1.png" alt="ICB" /></div>
+        <h2 className="title"><br/><br/>Авторизация</h2>
 
         {error && <p className="error">{error}</p>}
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <div className="input-group">
+          <input
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <label>Почта</label>
+        </div>
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <div className="input-group">
+          <input
+            type="password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <label>Пароль</label>
+        </div>
 
-        <button type="submit">Войти</button>
+        <button className="glass-button">Войти</button>
       </form>
     </div>
-    )
+  )
 }
 
-export default Login;
+export default Login
