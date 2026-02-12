@@ -6,12 +6,18 @@
 
 body{
   margin: 0;
-  display: flex;
+  /* display: flex;
   place-items: center;
-  min-width: 320px;
+  min-width: 100%;
   min-height: 100vh;
   background: url("assets/body-background.png");
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
+  height: 100vh;
+  background:
+    radial-gradient(circle at 20% 30%, #00ffa6, transparent 50%),
+    radial-gradient(circle at 80% 70%, #0ea5e9, transparent 50%),
+    #04047c;
 }
+
